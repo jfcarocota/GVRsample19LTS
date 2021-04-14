@@ -9,7 +9,9 @@ public class Target : MonoBehaviour
 
   Renderer render;
   [SerializeField]
-  GameObject textInteraction;
+  MessageController textInteraction;
+  [SerializeField]
+  DialogItem dialogItem;
 
   void Awake()
   {
@@ -18,11 +20,12 @@ public class Target : MonoBehaviour
 
   public void HandleColor() => render.material.color = catchColor;
 
-  public void HandleTextInteraction() =>  textInteraction?.SetActive(!textInteraction.activeSelf);
+  public void HandleTextInteraction() =>  textInteraction.gameObject?.SetActive(!textInteraction.gameObject.activeSelf);
 
   public void handleClick()
   {
     HandleColor();
     HandleTextInteraction();
+    textInteraction.Message = dialogItem.Message;
   }
 }
