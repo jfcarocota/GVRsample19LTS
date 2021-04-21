@@ -47,7 +47,16 @@ public class Target : MonoBehaviour
 
     //textInteraction.Message = dialogsItems[index].Message;
     //Debug.Log(dialogsItems[index].);
-    index = index + 1 < dialogsItems.Count ? index + 1 : 0;
+    //index = index + 1 < dialogsItems.Count ? index + 1 : 0;
+    if(!(index + 1 < dialogsItems.Count))
+    {
+      index = 0;
+      HandleTextInteraction();
+    }
+    else
+    {
+      index++;
+    }
   }
 
 }
