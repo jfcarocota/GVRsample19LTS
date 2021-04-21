@@ -6,7 +6,7 @@ using UnityEngine;
 public class DialogItem : ScriptableObject
 {
    [SerializeField, TextArea(5, 20)]
-   string message;
+   protected string message;
 
    public string Message { get => message; set => message = value;}
 }

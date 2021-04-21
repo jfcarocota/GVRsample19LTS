@@ -632,7 +632,7 @@ RectTransform:
   m_GameObject: {fileID: 487525118}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0128944125, y: 0.0128944125, z: 0.0128944125}
+  m_LocalScale: {x: 0.010676574, y: 0.010676574, z: 0.010676574}
   m_Children:
   - {fileID: 1984958978}
   - {fileID: 212701403}
@@ -641,7 +641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.2741983, y: 1.67}
+  m_AnchoredPosition: {x: 0, y: 1.21}
   m_SizeDelta: {x: 218.81079, y: 42.110428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &487525123
@@ -820,7 +820,7 @@ PrefabInstance:
     - target: {fileID: 5919615798040949967, guid: 41dd2a223f630db4cb01f23251f9568a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.79
+      value: 21.574
       objectReference: {fileID: 0}
     - target: {fileID: 5919615798040949967, guid: 41dd2a223f630db4cb01f23251f9568a,
         type: 3}
@@ -1389,6 +1389,7 @@ MonoBehaviour:
   catchColor: {r: 0, g: 1, b: 1, a: 1}
   textInteraction: {fileID: 0}
   dialogItem: {fileID: 0}
+  dialogsItems: []
 --- !u!1 &1452809159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,6 +1595,12 @@ MonoBehaviour:
   catchColor: {r: 0, g: 1, b: 1, a: 1}
   textInteraction: {fileID: 487525123}
   dialogItem: {fileID: 11400000, guid: b2d765ca0947d154e96bffaeb1680144, type: 2}
+  dialogsItems:
+  - {fileID: 11400000, guid: 64a75820a0901e2438231e18d87de828, type: 2}
+  - {fileID: 11400000, guid: 69e77c6e70f09cf459abbaadfb612602, type: 2}
+  - {fileID: 11400000, guid: fa91b214f45398e4dbee5b97cc5e0d1d, type: 2}
+  - {fileID: 11400000, guid: 37063a6d9bd4cfc40ae5fd5d63f02407, type: 2}
+  - {fileID: 11400000, guid: 38630ee191238f745b5ba7a1ef3fb045, type: 2}
 --- !u!1001 &1775810924
 PrefabInstance:
   m_ObjectHideFlags: 0

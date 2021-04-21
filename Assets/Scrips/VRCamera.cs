@@ -52,10 +52,11 @@ public class VRCamera : MonoBehaviour
         case 8:
           target?.handleClick();
           //target.HandleColor();
+
           break;
         case 9:
-          Debug.Log("click");
-          target?.HandleTextInteraction();
+          //Debug.Log("click");
+          //target?.HandleTextInteraction();
           break;
       }
   }
