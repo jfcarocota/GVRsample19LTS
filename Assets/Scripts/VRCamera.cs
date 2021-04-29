@@ -74,8 +74,10 @@ public class VRCamera : NetworkBehaviour
 
   void Update()
   {
+    #if UNITY_STANDALONE_WIN
     if(!IsLocalPlayer) return;
     transform.Translate(new Vector3(AxisDirection.x, 0f, AxisDirection.y) * Time.deltaTime * 3f);
+    #endif
   }
 
   void FixedUpdate()
