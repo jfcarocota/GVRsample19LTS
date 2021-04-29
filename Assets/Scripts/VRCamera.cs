@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MLAPI;
+using System.IO;
 
-public class VRCamera : MonoBehaviour
+public class VRCamera : NetworkBehaviour
 {
   [SerializeField]
   Color rayColor = Color.green;
@@ -22,9 +24,11 @@ public class VRCamera : MonoBehaviour
   VRControls vrcontrols;
 
   Target target;
+  Camera m_camera;
 
   void Awake()
   {
+    m_camera = GetComponent<Camera>();
     vrcontrols = new VRControls();
   }
 
@@ -40,8 +44,15 @@ public class VRCamera : MonoBehaviour
 
   void Start()
   {
+    if(IsLocalPlayer)
+    {
       reticleTrs.localScale = initialScale;
       vrcontrols.Gameplay.VRClick.performed += _=> ClickOverObject();
+    }
+    else
+    {
+      m_camera.enabled = false;
+    }
   }
 
   void ClickOverObject()
@@ -59,6 +70,12 @@ public class VRCamera : MonoBehaviour
           //target?.HandleTextInteraction();
           break;
       }
+  }
+
+  void Update()
+  {
+    if(!IsLocalPlayer) return;
+    transform.Translate(new Vector3(AxisDirection.x, 0f, AxisDirection.y) * Time.deltaTime * 3f);
   }
 
   void FixedUpdate()
@@ -85,4 +102,27 @@ public class VRCamera : MonoBehaviour
     Gizmos.color = rayColor;
     Gizmos.DrawRay(transform.position, transform.forward * rayDistance);
   }
+
+  public override void NetworkStart()
+  {
+    transform.position = Gamemanager.instance.startPoint;
+    base.NetworkStart();
+  }
+
+  /*public override void NetworkStart(Stream stream)
+  {
+    base.NetworkStart(stream);
+  }*/
+
+  public override void OnGainedOwnership()
+  {
+    base.OnGainedOwnership();
+  }
+
+  public override void OnLostOwnership()
+  {
+    base.OnLostOwnership();
+  }
+
+  Vector2 AxisDirection => vrcontrols.Gameplay.Movement.ReadValue<Vector2>();
 }

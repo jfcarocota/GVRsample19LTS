@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scrips/VRControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/VRControls.inputactions'
 
 using System;
 using System.Collections;
@@ -22,6 +22,14 @@ public class @VRControls : IInputActionCollection, IDisposable
                     ""name"": ""VRClick"",
                     ""type"": ""Value"",
                     ""id"": ""a0f91a80-b229-40a8-98fb-5596d3302f32"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""80ac8804-2610-4d25-beed-5ba2fa8fed06"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -49,6 +57,61 @@ public class @VRControls : IInputActionCollection, IDisposable
                     ""action"": ""VRClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""47aeacf3-63ea-4d30-b163-e55f18c42fea"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""7f418050-92f3-43c0-a538-81c767320e33"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""78c96035-048d-4b13-b00c-a920a4c2f0a8"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""700d9ed0-cd5d-4000-b1c4-ab57d6294f8c"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""35fe570b-f86e-4e01-b148-5ebf2454c3e9"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -81,6 +144,7 @@ public class @VRControls : IInputActionCollection, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_VRClick = m_Gameplay.FindAction("VRClick", throwIfNotFound: true);
+        m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -131,11 +195,13 @@ public class @VRControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Gameplay;
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_Gameplay_VRClick;
+    private readonly InputAction m_Gameplay_Movement;
     public struct GameplayActions
     {
         private @VRControls m_Wrapper;
         public GameplayActions(@VRControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @VRClick => m_Wrapper.m_Gameplay_VRClick;
+        public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -148,6 +214,9 @@ public class @VRControls : IInputActionCollection, IDisposable
                 @VRClick.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnVRClick;
                 @VRClick.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnVRClick;
                 @VRClick.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnVRClick;
+                @Movement.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -155,6 +224,9 @@ public class @VRControls : IInputActionCollection, IDisposable
                 @VRClick.started += instance.OnVRClick;
                 @VRClick.performed += instance.OnVRClick;
                 @VRClick.canceled += instance.OnVRClick;
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
             }
         }
     }
@@ -180,5 +252,6 @@ public class @VRControls : IInputActionCollection, IDisposable
     public interface IGameplayActions
     {
         void OnVRClick(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
     }
 }
